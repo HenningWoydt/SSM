@@ -1,0 +1,39 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+
+image: gcc
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+before_script:
+  # - docker image prune -f
+  - dpkg-divert --remove /usr/bin/gfortran
+  - apt-get update --yes
+  - apt-get upgrade --yes
+  - apt-get install --yes make cmake g++ autoconf ninja-build cmake-doc cmake-format libxmu-dev libomp-dev build-essential gcc-multilib unzip gfortran gfortran-multilib libcoarrays-dev libboost-all-dev
+
+build:
+  stage: build
+  script:
+    - mkdir build
+    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -S . -B ./build
+    - cmake --build build --target subsetoptimization_test -j 10
+  artifacts:
+    expire_in: 8 hrs
+    paths:
+      - build/subsetoptimization_test
+
+
+test:
+  stage: test
+  script:
+    - cd build
+    - wget https://github.com/google/gtest-parallel/archive/refs/heads/master.zip
+    - unzip master.zip
+    - ./gtest-parallel-master/gtest-parallel -w 10 ./subsetoptimization_test
