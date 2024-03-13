@@ -17,8 +17,8 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(CMAKE_CXX_FLAGS_RELEASE "-std=c++20 -O3 -DNDEBUG -fopenmp -finline-functions -fwhole-program -ftree-vectorize -flto -funroll-loops -falign-loops -march=native")
-set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -fopenmp -std=c++20 -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS_RELEASE "-std=c++20 -O3 -DNDEBUG -finline-functions -fwhole-program -ftree-vectorize -flto -funroll-loops -falign-loops -march=native")
+set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -std=c++20 -Wall -Wextra -pedantic")
 
 
 enable_testing()
@@ -107,12 +107,6 @@ if (supported)
     set_property(TARGET SSM_test PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
 else ()
     message(STATUS "IPO / LTO not supported: <${error}>")
-endif ()
-
-find_package(OpenMP)
-if (OpenMP_CXX_FOUND)
-    target_link_libraries(SSM OpenMP::OpenMP_CXX)
-    target_link_libraries(SSM_test OpenMP::OpenMP_CXX)
 endif ()
 
 target_link_libraries(SSM ${Boost_LIBRARIES})

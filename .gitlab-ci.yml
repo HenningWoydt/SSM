@@ -23,11 +23,11 @@ build:
   script:
     - mkdir build
     - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -S . -B ./build
-    - cmake --build build --target subsetoptimization_test -j 10
+    - cmake --build build --target SSM_test -j 10
   artifacts:
     expire_in: 8 hrs
     paths:
-      - build/subsetoptimization_test
+      - build/SSM_test
 
 
 test:
@@ -36,4 +36,4 @@ test:
     - cd build
     - wget https://github.com/google/gtest-parallel/archive/refs/heads/master.zip
     - unzip master.zip
-    - ./gtest-parallel-master/gtest-parallel -w 10 ./subsetoptimization_test
+    - ./gtest-parallel-master/gtest-parallel -w 10 ./SSM_test
