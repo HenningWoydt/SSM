@@ -61,12 +61,10 @@ Afterwads modify `PerfectMatching.h` on line 40 from `//#define PERFECT_MATCHING
 
 ### Build
 To build the binary use
-
-`cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -S . -B ./build`
-
-and
-
-`cmake --build build --target subsetoptimization` .
+```
+cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -S . -B ./build
+cmake --build build --target subsetoptimization
+```
 
 The binary `subsetoptimization` will be in the folder `build`.
 
