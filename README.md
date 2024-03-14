@@ -80,7 +80,7 @@ Use `./subsetoptimization -h [ --help  ]` to print a help message.
 - `-s [ --score-function ] arg`: The desired score function to optimize. Currently available are `negative-group-farness` or `partial-dominating-set` if `graph` was specified, `euclidian-distance` if `k-medoid` was specified and `benefits`, if `facility` was specified.
 - `-o [ --output-file  ] arg`: Path to the file, which will hold the results.
 
-Example: `./subsetoptimization -t graph -i input.edges -k 10 -s partial-dominating-set -o result.JSON` will optimize the Partial Dominating Set function on the graph in input.edges for the set size $k = 10$ and write the results to results.JSON.
+Example: `./subsetoptimization -t graph -i input.edges -k 10 -s partial-dominating-set -o result.JSON` will optimize the Partial Dominating Set function on the graph in input.edges for the set size $k = 10$ and write the results to result.JSON.
 
 #### Optional Arguments
 
