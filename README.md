@@ -72,7 +72,7 @@ The binary `subsetoptimization` will be in the folder `build`.
 
 Use `./subsetoptimization -h [ --help  ]` to print a help message.
 
-#### Needed Arguments
+#### Required Arguments
 
 - `-t [ --type  ] {graph | k-medoid | facility}`: To read given input.
 - `-i [ --input-file  ] arg`: Path to the file containing the graph, datapoints, etc.
