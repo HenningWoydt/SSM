@@ -150,7 +150,12 @@ Example: `./subsetoptimization -t graph -i input.edges -k 10 -s partial-dominati
 
 The file format should be
 
-``` e11 e12 e21 e22 ... en1 en2 ```  
+```
+e11 e12
+e21 e22
+...
+en1 en2
+```  
 with `ei1 ei2` denoting edge $i$ of the graph.
 
 - Each $e_{ij}$ should be a positive integer $\geq 0$.
